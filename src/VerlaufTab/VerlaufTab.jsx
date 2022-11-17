@@ -62,7 +62,7 @@ export default function VerlaufTab() {
         Money Tracker
       </Typography>
 
-      <CustomChart></CustomChart>
+      <CustomChart array={array}></CustomChart>
 
       <div>
         <SimpleDialog
