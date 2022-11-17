@@ -53,8 +53,12 @@ export default function VerlaufTab() {
 
   function handleEditModeClick() {
     //WICHTIG: Button für Page Switcher
+<<<<<<< Updated upstream
     setisEditMode(!isEditMode);
     if (name != "") {
+=======
+    if (name !== "") {
+>>>>>>> Stashed changes
       setName("");
       setAmount("");
       setCategory("");
