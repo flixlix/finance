@@ -1,31 +1,24 @@
-import React from "react";
-import { useState } from "react"; //Strg useState dann importiert es automatisch
-import TextField from "@mui/material/TextField";
-
-import Button from "@mui/material/Button";
-import { Avatar } from "@mui/material";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import { Avatar } from "@mui/material";
 // Grid
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import Alert from "@mui/material/Alert";
-
+import Button from "@mui/material/Button";
+//Select
+import FormControl from "@mui/material/FormControl";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-
+import InputLabel from "@mui/material/InputLabel";
 //Avatar
 import ListItemText from "@mui/material/ListItemText";
-import DynamicTagAvatar from "../DynamicTagAvatar/DynamicTagAvatar";
-import Chart from "./Chart";
-
-//Select
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+import Paper from "@mui/material/Paper";
 import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import { flexbox } from "@mui/system";
+import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
+
+import DynamicTagAvatar from "../DynamicTagAvatar/DynamicTagAvatar";
+import SimpleDialog from "./SimpleDialog";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -46,10 +39,6 @@ export default function VerlaufTab() {
 
   //Select
   const [category, setCategory] = React.useState("OtherIcon");
-
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  }; //Select
 
   function handleEditModeClick() {
     //WICHTIG: Button für Page Switcher
@@ -72,8 +61,7 @@ export default function VerlaufTab() {
       <Typography variant="h4" gutterBottom padding="30px">
         Money Tracker
       </Typography>
-
-      <Button
+      {/* <Button
         variant="outlined"
         onClick={handleEditModeClick}
         color="primary"
@@ -85,96 +73,18 @@ export default function VerlaufTab() {
         <Typography variant="button" display="block" padding="5px" gutterBottom>
           Add Spending{" "}
         </Typography>
-      </Button>
+      </Button> */}
       {isEditMode ? (
         <div>
-          <Box>
-            <Grid container spacing={3} padding="20px">
-              <Grid item xs={12} zeroMinWidth>
-                <TextField
-                  id="outlined-number-required"
-                  label="Enter the Amount"
-                  // size="small"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} zeroMinWidth>
-                <TextField
-                  required
-                  id="outlined-required"
-                  label="Notes"
-                  defaultValue="Miete"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  fullWidth
-                />
-              </Grid>
-              {/* Kategorie */}
-              <Grid item xs={12} zeroMinWidth>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Category
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={category}
-                    label="Category"
-                    onChange={handleChange}
-                  >
-                    <MenuItem
-                      value={"FoodIcon"}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      Food
-                    </MenuItem>
-                    <MenuItem
-                      value={"ClothesIcon"}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      Clothes
-                    </MenuItem>
-                    <MenuItem
-                      value={"HousingIcon"}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      Housing
-                    </MenuItem>
-                    <MenuItem
-                      value={"TransportationIcon"}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      Transportation
-                    </MenuItem>
-                    <MenuItem
-                      value={"HealthIcon"}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      Health
-                    </MenuItem>
-                    <MenuItem
-                      value={"EntertainmentIcon"}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      Entertainment
-                    </MenuItem>
-                    <MenuItem
-                      value={"OtherIcon"}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      Other
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-          </Box>
+          <SimpleDialog
+            amount={amount}
+            setAmount={setAmount}
+            name={name}
+            setName={setName}
+            category={category}
+            setCategory={setCategory}
+            onSendClick={handleEditModeClick}
+          />
         </div>
       ) : (
         <div>
