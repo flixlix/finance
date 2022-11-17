@@ -16,6 +16,7 @@ import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
+import { CustomChart } from "../Doughnut/Doughnut";
 
 import DynamicTagAvatar from "../DynamicTagAvatar/DynamicTagAvatar";
 import SimpleDialog from "./SimpleDialog";
@@ -60,6 +61,9 @@ export default function VerlaufTab() {
       <Typography variant="h4" gutterBottom padding="30px">
         Money Tracker
       </Typography>
+
+      <CustomChart></CustomChart>
+
       <div>
         <SimpleDialog
           amount={amount}
