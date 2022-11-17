@@ -42,7 +42,6 @@ export default function VerlaufTab() {
 
   function handleEditModeClick() {
     //WICHTIG: Button für Page Switcher
-    setisEditMode(!isEditMode);
     if (name != "") {
       setName("");
       setAmount("");
@@ -61,74 +60,58 @@ export default function VerlaufTab() {
       <Typography variant="h4" gutterBottom padding="30px">
         Money Tracker
       </Typography>
-      {/* <Button
-        variant="outlined"
-        onClick={handleEditModeClick}
-        color="primary"
-        sx={{ flexDirection: "row" }}
-      >
-        <Avatar sx={{ bgcolor: "white", border: 1, borderColor: "lightgrey" }}>
-          <AddOutlinedIcon color="primary" />
-        </Avatar>
-        <Typography variant="button" display="block" padding="5px" gutterBottom>
-          Add Spending{" "}
+      <div>
+        <SimpleDialog
+          amount={amount}
+          setAmount={setAmount}
+          name={name}
+          setName={setName}
+          category={category}
+          setCategory={setCategory}
+          onSendClick={handleEditModeClick}
+        />
+      </div>
+      <div>
+        <Typography variant="h6" gutterBottom>
+          Transaction
         </Typography>
-      </Button> */}
-      {isEditMode ? (
-        <div>
-          <SimpleDialog
-            amount={amount}
-            setAmount={setAmount}
-            name={name}
-            setName={setName}
-            category={category}
-            setCategory={setCategory}
-            onSendClick={handleEditModeClick}
-          />
-        </div>
-      ) : (
-        <div>
-          <Typography variant="h6" gutterBottom>
-            Transaction
-          </Typography>
-          <Box>
-            <Grid container spacing={3}>
-              {array.map((neuesFeld) => (
-                <Grid item xs={12} zeroMinWidth>
-                  <Item
-                    key={array.id}
-                    elevation={2}
-                    sx={{
-                      bgcolor: "background.paper",
-                      orientation: "vertical",
-                    }}
-                  >
-                    <DynamicTagAvatar
-                      tag={neuesFeld.category}
-                      sx={{ display: "inline" }}
-                    />
-                    <ListItemText
-                      primary={neuesFeld.name}
-                      sx={{ display: "inline" }}
-                    />
-                    <ListItemText
-                      secondary={neuesFeld.amount + "€"}
-                      justify="flex-end"
-                      sx={{ display: "inline" }}
-                    />
-                  </Item>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
+        <Box>
+          <Grid container spacing={3}>
+            {array.map((neuesFeld) => (
+              <Grid item xs={12} zeroMinWidth>
+                <Item
+                  key={array.id}
+                  elevation={2}
+                  sx={{
+                    bgcolor: "background.paper",
+                    orientation: "vertical",
+                  }}
+                >
+                  <DynamicTagAvatar
+                    tag={neuesFeld.category}
+                    sx={{ display: "inline" }}
+                  />
+                  <ListItemText
+                    primary={neuesFeld.name}
+                    sx={{ display: "inline" }}
+                  />
+                  <ListItemText
+                    secondary={neuesFeld.amount + "€"}
+                    justify="flex-end"
+                    sx={{ display: "inline" }}
+                  />
+                </Item>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
-          {/* <Chart /> */}
+        {/* <Chart /> */}
 
-          {/* <Alert variant="outlined" severity="success">
+        {/* <Alert variant="outlined" severity="success">
             This is a success alert — check it out!
           </Alert> how to time this*/}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
