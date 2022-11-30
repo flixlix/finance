@@ -4,12 +4,15 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+let categoryArray = [0];
+let amountArray = [0];
+
 export const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Pink"],
+  labels: categoryArray,
   datasets: [
     {
       label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3, 9],
+      data: amountArray,
       backgroundColor: [
         "rgba(255, 0, 0, 0.5)",
         "rgba(54, 162, 235, 0.48)",
@@ -34,12 +37,31 @@ export const data = {
 };
 
 export function CustomChart(props) {
+  props.array.forEach((item) => {
+    console.log(item.category);
+    console.log(amountArray);
+  });
+
+  categoryArray = props.array.map((item) => {
+    data.labels = categoryArray;
+    return item.category;
+  });
+  amountArray = props.array.map((item) => {
+    return +item.amount;
+  });
+  /* console.log(amountArray); */
+
+  data.datasets[0].data = amountArray;
+
+  /* useEffect(() => {
+  }, []); */
+  /* console.log(typeof props);
   console.log(props);
-  console.log(props.array.length);
-  console.log(props.array[0].category);
+  console.log(props.array.length); */
 
   return (
     <div style={{ height: "50vh" }}>
+      {console.log(data)}
       <Doughnut data={data} />
     </div>
   );

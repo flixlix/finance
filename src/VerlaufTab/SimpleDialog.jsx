@@ -10,11 +10,10 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
+
 import React from "react";
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
+/* const emails = ["username@gmail.com", "user02@gmail.com"]; */
 
 export default function SimpleDialog(props) {
   //Select

@@ -33,7 +33,7 @@ export default function VerlaufTab() {
   //const
   const [isEditMode, setisEditMode] = useState(true); //wichtig
   const [name, setName] = useState("Shopping");
-  const [amount, setAmount] = useState("10");
+  const [amount, setAmount] = useState(0);
   const [array, setArray] = useState([]);
 
   let nextId = 0;
